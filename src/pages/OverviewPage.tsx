@@ -1,14 +1,48 @@
 import { BarChart2, ShoppingBag, Users, Zap } from "lucide-react";
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header.tsx";
 import StatCard from "../components/StatCard.tsx";
 import SalesOverviewChart from "../components/overview/SalesOverviewChart.tsx";
 import CategoryDistributionChart from "../components/overview/CategoryDistributionChart.tsx";
 import SalesChannelChart from "../components/overview/SalesChannelChart.tsx";
+import axios from "axios";
 
+interface Card {
+  title: string;
+  value: string | number;
+  icon: string;
+  color: string;
+}
 
 const OverviewPage: React.FC = () => {
+  const [cards, setCards] = useState<Card[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const response = await axios.get("http://localhost:3003/cards");
+        setCards(response.data);
+      } catch (err) {
+        setError("Failed to fetch cards");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCards();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <div className="flex-1 overflow-auto relative z-10 bg-white text-black dark:bg-gray-900 dark:text-white">
       <Header title="Overview" />
@@ -21,10 +55,25 @@ const OverviewPage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <StatCard name="Total Sales" icon={Zap} value="$12,345" color="#6366F1" />
-          <StatCard name="New Users" icon={Users} value="1,234" color="#8B5CF6" />
-          <StatCard name="Total Products" icon={ShoppingBag} value="567" color="#EC4899" />
-          <StatCard name="Conversion Rate" icon={BarChart2} value="12.5%" color="#10B981" />
+          {cards.map((card) => {
+            const Icon =
+              card.icon === "Zap"
+                ? Zap
+                : card.icon === "Users"
+                ? Users
+                : card.icon === "ShoppingBag"
+                ? ShoppingBag
+                : BarChart2;
+            return (
+              <StatCard
+                key={card.title}
+                name={card.title}
+                icon={Icon}
+                value={card.value}
+                color={card.color}
+              />
+            );
+          })}
         </motion.div>
 
         {/* CHARTS */}

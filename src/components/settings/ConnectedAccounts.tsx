@@ -33,15 +33,10 @@ const ConnectedAccounts = () => {
           className="flex items-center justify-between py-3 dark:bg-gray-800 bg-white rounded-lg"
         >
           <div className="flex gap-1">
-            {/* <img
-              src={account.icon}
-              alt="Social img"
-              className="w-8 h-8 object-cover rounded-full mr-2"
-            /> */}
-            <span className="text-gray-1000 dark:text-gray-200">{account.name}</span>
+            <span className="text-gray-1000 dark:text-gray-200 opacity:0">{account.name}</span>
           </div>
           <button
-            className={`px-3 py-1 rounded text-white ${
+            className={`px-3 py-1 rounded text-white${
               account.connected
                 ? "bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600"
                 : "bg-gray-600 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600"

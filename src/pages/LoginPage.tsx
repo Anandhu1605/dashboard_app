@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 interface LoginPageProps {
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -9,15 +10,27 @@ const LoginPage: React.FC<LoginPageProps> = ({ setLoggedIn }) => {
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  const handleLogin = () => {
-    // Hardcoded credentials
-    const hardcodedUsername = "Anandhu";
-    const hardcodedPassword = "Password@123";
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:3003/login", {
+        username,
+        password,
+      });
 
-    if (username === hardcodedUsername && password === hardcodedPassword) {
-      setLoggedIn(true); // Log in
-    } else {
-      alert("Invalid credentials");
+      console.log(response); // Inspect the response to see the correct data
+
+      if (response.data.user.username === username) {
+        // Store the username and user ID in localStorage
+        localStorage.setItem("username", response.data.user.username);
+        localStorage.setItem("userId", response.data.user._id); // Assuming _id is returned
+
+        setLoggedIn(true); // Log in
+      } else {
+        alert("Invalid credentials");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+      alert("An error occurred during login.");
     }
   };
 
