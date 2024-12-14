@@ -29,22 +29,23 @@ const OrdersTable = () => {
 
 	return (
 		<motion.div
-			className='bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700'
+			className='bg-white dark:bg-gray-800 text-black dark:text-white bg-opacity-100 dark:bg-opacity-50 backdrop-filter backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700'
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ delay: 0.4 }}
 		>
 			<div className='flex justify-between items-center mb-6'>
-				<h2 className='text-xl font-semibold text-gray-100'>Order List</h2>
+				<h2 className='text-xl font-semibold'>Order List</h2>
 				<div className='relative'>
-					<input
-						type='text'
-						placeholder='Search orders...'
-						className='bg-gray-700 text-white placeholder-gray-400 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
-						value={searchTerm}
-						onChange={handleSearch}
-					/>
-					<Search className='absolute left-3 top-2.5 text-gray-400' size={18} />
+                <input
+                    type='text'
+                    placeholder='Search orders...'
+                    className='bg-white text-black placeholder-gray-600 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-500'
+                    value={searchTerm}
+                     onChange={handleSearch}
+                    />
+
+					<Search className='absolute left-3 top-2.5 text-gray-400 dark:text-gray-500' size={18} />
 				</div>
 			</div>
 
@@ -81,16 +82,16 @@ const OrdersTable = () => {
 								animate={{ opacity: 1 }}
 								transition={{ duration: 0.3 }}
 							>
-								<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100'>
+								<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-black dark:text-white'>
 									{order.id}
 								</td>
-								<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100'>
+								<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-black dark:text-white'>
 									{order.customer}
 								</td>
-								<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100'>
+								<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-black dark:text-white'>
 									${order.total.toFixed(2)}
 								</td>
-								<td className='px-6 py-4 whitespace-nowrap text-sm text-gray-300'>
+								<td className='px-6 py-4 whitespace-nowrap text-sm'>
 									<span
 										className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
 											order.status === "Delivered"
@@ -105,8 +106,8 @@ const OrdersTable = () => {
 										{order.status}
 									</span>
 								</td>
-								<td className='px-6 py-4 whitespace-nowrap text-sm text-gray-300'>{order.date}</td>
-								<td className='px-6 py-4 whitespace-nowrap text-sm text-gray-300'>
+								<td className='px-6 py-4 whitespace-nowrap text-sm'>{order.date}</td>
+								<td className='px-6 py-4 whitespace-nowrap text-sm'>
 									<button className='text-indigo-400 hover:text-indigo-300 mr-2'>
 										<Eye size={18} />
 									</button>
@@ -119,4 +120,5 @@ const OrdersTable = () => {
 		</motion.div>
 	);
 };
+
 export default OrdersTable;

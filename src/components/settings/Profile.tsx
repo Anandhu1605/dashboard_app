@@ -21,17 +21,17 @@ const Profile = ({ setLoggedIn }) => {
           className="rounded-full w-20 h-20 object-cover mr-4"
         />
         <div>
-          <h3 className="text-lg font-semibold text-gray-100">Anandhu</h3>
-          <p className="text-gray-400">anandhu@gmail.com</p>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Anandhu</h3>
+          <p className="text-gray-600 dark:text-gray-300">anandhu@gmail.com</p>
         </div>
       </div>
       <div className="flex justify-between items-center w-full">
-        <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded transition duration-200 w-full sm:w-auto">
+        <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded transition duration-200 w-full sm:w-auto dark:bg-indigo-700 dark:hover:bg-indigo-600">
           Edit Profile
         </button>
         <button
           onClick={handleLogout}
-          className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-200 w-full sm:w-auto ml-4"
+          className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-200 w-full sm:w-auto ml-4 dark:bg-red-700 dark:hover:bg-red-600"
         >
           Logout
         </button>
