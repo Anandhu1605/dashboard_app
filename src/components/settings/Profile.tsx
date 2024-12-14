@@ -1,28 +1,34 @@
 import { User } from "lucide-react";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SettingSection from "./SettingsSection.tsx";
-import Photo from "../../Image/Photo.jpeg";
 
 const Profile = ({ setLoggedIn }) => {
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+
+  // On mount, get username from localStorage
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername);  // Set username if found in localStorage
+    } else {
+      navigate("/");  // Redirect to login if no username found
+    }
+  }, [navigate]);
 
   const handleLogout = () => {
-    setLoggedIn(false); // Update the logged-in state
-    navigate("/");      // Redirect to login page
+    setLoggedIn(false); // Update logged-in state
+    localStorage.removeItem("userId");  // Clear userId from localStorage
+    localStorage.removeItem("username");  // Clear username from localStorage
+    navigate("/");  // Redirect to login page
   };
 
   return (
     <SettingSection icon={User} title={"Profile"}>
       <div className="flex flex-col sm:flex-row items-center mb-6">
-        <img
-          src={Photo}
-          alt="Profile"
-          className="rounded-full w-20 h-20 object-cover mr-4"
-        />
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Anandhu</h3>
-          <p className="text-gray-600 dark:text-gray-300">anandhu@gmail.com</p>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Welcome back, {username || "User"} !</h3>
         </div>
       </div>
       <div className="flex justify-between items-center w-full">
