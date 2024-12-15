@@ -15,16 +15,16 @@ Graphical and pictorial representation makes the application user friendly, and 
 
 In the project directory, you can run:
 git clone https://github.com/Anandhu1605/dashboard_app.git --- for Front End source code
-cd interview 
-npm install
-npm start
+=>cd interview 
+=>npm install
+=>npm start
 Port:3000
 
 
 git clone https://github.com/Anandhu1605/dashboard_app_BE.git  --- for Back End source code
-cd interview_backend
-npm install 
-npm run start:dev
+=>cd interview_backend
+=>npm install 
+=>npm run start:dev
 port:3003
 
 
