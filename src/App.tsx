@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import OverviewPage from "./pages/OverviewPage.tsx";
 import ProductsPage from "./pages/ProductsPage.tsx";
 import OrdersPage from "./pages/OrdersPage.tsx";
@@ -13,11 +13,28 @@ import NotificationsPage from "./pages/NotificationsPage.tsx";
 import { ThemeProvider } from "./ThemeProvider.tsx";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
+  useEffect(() => {
+    const storedLoggedIn = localStorage.getItem("loggedIn");
+    setLoggedIn(storedLoggedIn === "true"); // Convert to boolean
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn !== null) {
+      localStorage.setItem("loggedIn", loggedIn.toString());
+    }
+  }, [loggedIn]);
+
+  if (loggedIn === null) {
+    return (
+      <div className="flex h-screen justify-center items-center bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <ThemeProvider>
-      {/* Root container with light and dark mode styling */}
       <div className="flex h-screen bg-white text-black dark:bg-gray-900 dark:text-gray-100 overflow-hidden">
         {/* Conditionally render Sidebar */}
         {loggedIn && <Sidebar />}
