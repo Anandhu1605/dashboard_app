@@ -23,7 +23,7 @@ const OverviewPage: React.FC = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await axios.get("http://localhost:3003/cards");
+        const response = await axios.get("https://dashboard-app-be.onrender.com/cards");
         setCards(response.data);
       } catch (err) {
         setError("Failed to fetch cards");

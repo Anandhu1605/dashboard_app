@@ -12,7 +12,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ setLoggedIn }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:3003/login", {
+      const response = await axios.post("https://dashboard-app-be.onrender.com/login", {
         username,
         password,
       });
