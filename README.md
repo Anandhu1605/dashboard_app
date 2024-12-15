@@ -14,27 +14,14 @@ Graphical and pictorial representation makes the application user friendly, and 
 ## Available Scripts
 
 In the project directory, you can run:
-git clone https://github.com/Anandhu1605/dashboard_app.git --- for Front End source code
-=>cd interview 
-=>npm install
-=>npm start
-Port:3000
 
+git clone https://github.com/Anandhu1605/dashboard_app.git --- for Front End source code
 
 git clone https://github.com/Anandhu1605/dashboard_app_BE.git  --- for Back End source code
-=>cd interview_backend
-=>npm install 
-=>npm run start:dev
-port:3003
-
-
-## Database 
-    mongoURL:'mongodb+srv://anandhuajayakumar1605:Anandhuajay2000@xantac.oia27.mongodb.net/Xantac?retryWrites=true&w=majority'
-
 
 
 ## See the website online 
-Vercel URL - 
+Vercel URL - https://dashboard-app-opal.vercel.app
 
 ## Versions and Packages
 
